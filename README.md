@@ -2,7 +2,7 @@
 
 Intégration HTML/CSS/JS (sans framework) de trois pages du site de la Commanderie de Peyrassol, d'après les maquettes desktop Figma, avec leurs versions tablette et mobile.
 
-**Démo :** https://armelpltr.github.io/peyrassol-mobile/
+**Démo :** https://quezaco-agency.github.io/peyrassol-mobile/
 
 ## Pages
 

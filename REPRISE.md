@@ -2,8 +2,8 @@
 
 Dernière mise à jour : 26/10/2026, commit `886a9ec`.
 
-- Dépôt : https://github.com/armelpltr/peyrassol-mobile (public, branche `main`)
-- Démo : https://armelpltr.github.io/peyrassol-mobile/
+- Dépôt : https://github.com/quezaco-agency/peyrassol-mobile (public, branche `main`)
+- Démo : https://quezaco-agency.github.io/peyrassol-mobile/
 - Dossier local : `C:\Users\Armel\Documents\Peyrassol`
 
 ## Ce qui est fait
@@ -78,7 +78,7 @@ Les polices ne sont pas nommées dans les PDF. On a choisi **IBM Plex Sans / Ser
 cd C:\Users\Armel\Documents\Peyrassol
 git pull
 ```
-Le compte GitHub à utiliser est `armelpltr`, pas `arrmel-capitalboard`. Vérifier avec `gh auth status`.
+Le compte GitHub à utiliser est `quezaco-agency` (ni `armelpltr`, ni `arrmel-capitalboard`) : `gh auth switch --user quezaco-agency` si besoin. Vérifier avec `gh auth status`.
 
 ### Modifier les pages
 **Ne pas éditer `index.html`, `nos-vins.html` et `restaurants.html` à la main.** Ils sont générés à partir des morceaux qui se trouvent dans `_sources/outils/parts/` :
@@ -119,5 +119,5 @@ Piège connu : un `.visually-hidden` placé dans un carrousel mobile sort de la 
 - Un commit par étape, avec un message en français du type `feat: …` ou `style: …`, puis `git push`.
 - GitHub Pages se met à jour en 1 à 2 minutes. Pour suivre le build :
   ```bash
-  gh api repos/armelpltr/peyrassol-mobile/pages/builds/latest --jq .status
+  gh api repos/quezaco-agency/peyrassol-mobile/pages/builds/latest --jq .status
   ```
