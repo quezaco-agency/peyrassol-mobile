@@ -35,7 +35,8 @@
 
   /* Bouton burger : 3 barres qui se changent en croix */
   .burger {
-    order: 2;
+    order: 3;
+    margin-right: -12px; /* barres alignées sur la gouttière */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -167,36 +168,14 @@
     font-size: var(--fs-ui);
   }
 
-  /* Réserver et offrir en bas du panneau */
+  /* « Réserver et offrir » n'est pas repris dans le burger : l'icône agenda
+     du bandeau l'ouvre déjà */
   .main-nav__actions {
-    flex-direction: column;
-    align-items: stretch;
-    margin-top: 28px;
+    display: none;
   }
 
-  .main-nav__item--cta {
-    border-bottom: 0;
-    background: var(--black);
-    color: var(--white);
-  }
-
-  /* Décalage à gauche = largeur du chevron, pour centrer le libellé */
-  .main-nav__link--cta {
-    padding: 16px 0 16px 48px;
-    text-align: center;
-    color: var(--white);
-  }
-
-  .main-nav__item--cta .sub-nav {
-    padding: 4px 16px 16px;
-  }
-
-  .main-nav__item--cta .sub-nav a {
-    color: var(--white);
-  }
-
-  /* Bandeau : logo … FR ▾ · burger · calendrier (bloc noir collé au bord droit,
-     rappel du bouton « Réserver et offrir » du desktop) */
+  /* Bandeau : logo … agenda (carré noir, rappel du bouton « Réserver et
+     offrir » du desktop) · FR ▾ · burger tout à droite */
   .header-tools {
     display: contents;
   }
@@ -206,8 +185,8 @@
   }
 
   .lang-switch {
-    order: 1;
-    margin-right: 2px;
+    order: 2;
+    margin: 0 2px 0 10px;
   }
 
   .lang-switch__current {
@@ -222,16 +201,13 @@
   }
 
   .header-drop:not(.lang-switch) {
-    order: 3;
+    order: 1;
     position: static;
-    align-self: stretch;
-    margin-right: calc(-1 * var(--gutter));
-    margin-left: 6px;
   }
 
   .header-tools__agenda {
-    width: var(--header-h);
-    height: 100%;
+    width: 40px;
+    height: 40px;
     background: var(--black);
     color: var(--white);
   }
