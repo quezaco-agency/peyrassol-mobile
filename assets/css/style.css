@@ -124,6 +124,12 @@ button {
   outline-offset: 2px;
 }
 
+/* Copies des cartes pour la boucle du défilement continu (main.js) :
+   affichées seulement dans les carrousels mobiles */
+.is-clone {
+  display: none;
+}
+
 .visually-hidden {
   position: absolute !important;
   width: 1px;

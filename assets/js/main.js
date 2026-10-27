@@ -127,63 +127,129 @@
     select(tabs[0], false);
   });
 
-  // Défilement automatique de tous les carrousels, dès que la piste déborde
-  // (slider d'accueil à toutes les tailles, cartes / bouteilles / potager /
-  // labels en mobile). Un geste (doigt, clic, molette) ou le focus clavier
-  // mettent en pause, reprise 6 s après. Pas de pause au simple survol : la
-  // souris posée sur l'aperçu mobile de la démo figerait tout.
-  // Arrêt hors écran ou dans un onglet masqué.
-  var AUTOPLAY = [
-    ['.hero-slider__track', 5000],
-    ['.discover-grid', 3500],
-    ['.wine-grid', 3500],
-    ['.garden__grid', 3500],
-    ['.labels__track', 3000]
-  ];
+  // Défilement automatique, dès que la piste déborde.
+  // - Slider d'accueil : image par image (5 s), les points suivent.
+  // - Cartes, bouteilles, potager, labels (mobile) : défilement continu en
+  //   boucle. Les éléments sont dupliqués une fois (copies inertes, masquées
+  //   hors mobile en CSS) pour que la boucle ne se voie pas.
+  // Un geste (doigt, clic, molette) ou le focus clavier mettent en pause,
+  // reprise peu après. Pas de pause au simple survol : la souris posée sur
+  // l'aperçu mobile de la démo figerait tout. Arrêt hors écran ou dans un
+  // onglet masqué.
+  var CONTINUOUS = '.discover-grid, .wine-grid, .garden__grid, .labels__track';
+  var SPEED = 32; // px par seconde
 
-  AUTOPLAY.forEach(function (entry) {
-    document.querySelectorAll(entry[0]).forEach(function (track) {
-      var zone = track.closest('[data-carousel]') || track; // flèches des labels comprises
-      var paused = false;
-      var visible = false;
-      var resume;
+  function watchVisibility(track, onChange) {
+    new IntersectionObserver(function (entries) {
+      onChange(entries[0].isIntersecting);
+    }, { threshold: 0.3 }).observe(track);
+  }
 
-      function step() {
-        if (paused || !visible || track.offsetParent === null) return;
-        var max = track.scrollWidth - track.clientWidth;
-        if (max <= 4) return;
-        if (track.scrollLeft >= max - 4) {
-          track.scrollTo({ left: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
-        } else {
-          scrollToItem(track, currentIndex(track) + 1);
-        }
-      }
-
-      function pause() {
-        paused = true;
-        clearTimeout(resume);
-      }
-
-      function resumeLater() {
-        clearTimeout(resume);
-        resume = setTimeout(function () { paused = false; }, 6000);
-      }
-
-      zone.addEventListener('pointerdown', pause);
-      zone.addEventListener('pointerup', resumeLater);
-      zone.addEventListener('pointercancel', resumeLater);
-      zone.addEventListener('wheel', function () { pause(); resumeLater(); }, { passive: true });
-      zone.addEventListener('focusin', function (event) {
-        if (event.target.matches(':focus-visible')) pause();
-      });
-      zone.addEventListener('focusout', resumeLater);
-
-      new IntersectionObserver(function (entries) {
-        visible = entries[0].isIntersecting;
-      }, { threshold: 0.5 }).observe(track);
-
-      setInterval(step, entry[1]);
+  function pauseOnGesture(zone, pause, resumeLater) {
+    zone.addEventListener('pointerdown', pause);
+    zone.addEventListener('pointerup', resumeLater);
+    zone.addEventListener('pointercancel', resumeLater);
+    zone.addEventListener('wheel', function () { pause(); resumeLater(); }, { passive: true });
+    zone.addEventListener('focusin', function (event) {
+      if (event.target.matches(':focus-visible')) pause();
     });
+    zone.addEventListener('focusout', resumeLater);
+  }
+
+  // Slider d'accueil : image par image
+  document.querySelectorAll('.hero-slider__track').forEach(function (track) {
+    var paused = false;
+    var visible = false;
+    var resume;
+
+    pauseOnGesture(track, function () {
+      paused = true;
+      clearTimeout(resume);
+    }, function () {
+      clearTimeout(resume);
+      resume = setTimeout(function () { paused = false; }, 6000);
+    });
+    watchVisibility(track, function (v) { visible = v; });
+
+    setInterval(function () {
+      if (paused || !visible) return;
+      var max = track.scrollWidth - track.clientWidth;
+      if (max <= 4) return;
+      if (track.scrollLeft >= max - 4) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        scrollToItem(track, currentIndex(track) + 1);
+      }
+    }, 5000);
+  });
+
+  // Cartes, bouteilles, potager, labels : défilement continu
+  document.querySelectorAll(CONTINUOUS).forEach(function (track) {
+    var zone = track.closest('[data-carousel]') || track; // flèches des labels comprises
+    var originals = Array.prototype.slice.call(track.children);
+    if (!originals.length) return;
+
+    originals.forEach(function (item) {
+      var copy = item.cloneNode(true);
+      copy.classList.add('is-clone');
+      copy.setAttribute('aria-hidden', 'true');
+      copy.inert = true;
+      copy.querySelectorAll('[id]').forEach(function (el) { el.removeAttribute('id'); });
+      track.appendChild(copy);
+    });
+    var firstCopy = originals[0].parentNode.children[originals.length];
+
+    var paused = false;
+    var visible = false;
+    var resume;
+    var pos = 0;
+    var last = 0;
+
+    // Distance qui ramène la première copie à la place du premier original
+    function loopWidth() {
+      return firstCopy.getBoundingClientRect().left - originals[0].getBoundingClientRect().left;
+    }
+
+    // Les copies sont masquées hors mobile : loopWidth() vaut alors 0
+    function playable() {
+      if (track.offsetParent === null) return false;
+      var loop = loopWidth();
+      return loop > 0 && loop > track.clientWidth - 4;
+    }
+
+    function setSnap(on) {
+      track.style.scrollSnapType = on ? '' : 'none';
+    }
+
+    function frame(time) {
+      var dt = last ? Math.min(time - last, 64) / 1000 : 0;
+      last = time;
+      if (!paused && visible && playable()) {
+        setSnap(false);
+        // Défilement venu d'ailleurs (doigt, onglet, flèche) : on repart de là
+        if (Math.abs(track.scrollLeft - pos) > 2) pos = track.scrollLeft;
+        pos += SPEED * dt;
+        var loop = loopWidth();
+        if (pos >= loop) pos -= loop;
+        track.scrollLeft = pos;
+      }
+      window.requestAnimationFrame(frame);
+    }
+
+    pauseOnGesture(zone, function () {
+      paused = true;
+      clearTimeout(resume);
+      setSnap(true);
+    }, function () {
+      clearTimeout(resume);
+      resume = setTimeout(function () {
+        pos = track.scrollLeft;
+        paused = false;
+      }, 3000);
+    });
+    watchVisibility(track, function (v) { visible = v; });
+
+    window.requestAnimationFrame(frame);
   });
 
   // Bandeau : menus déroulants (Réserver et offrir sous le calendrier, langue)

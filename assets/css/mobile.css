@@ -427,6 +427,10 @@
     scroll-snap-align: start;
   }
 
+  .is-clone {
+    display: block;
+  }
+
   /* Accueil */
   .hero-slider__slide img {
     height: min(72svh, 520px);

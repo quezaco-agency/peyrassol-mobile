@@ -59,7 +59,10 @@ Polices : duo **Inter** (style typographique suisse, texte courant) + **Literata
    - pour chaque gamme (domaine, négoce), on a mis le même bloc qu'à l'accueil : onglets Rosés / Blancs / Rouges, avec un slider de bouteilles par onglet.
 
 ### Défilement automatique
-Tous les carrousels défilent seuls dès que leur piste déborde : slider d'accueil (toutes tailles, 5 s), cartes, bouteilles, potager et labels (mobile, 3 à 3,5 s). Pause au toucher, au survol ou au focus, reprise 6 s après ; arrêt hors écran. Liste et cadences : tableau `AUTOPLAY` de `main.js`.
+- Slider d'accueil : image par image toutes les 5 s, à toutes les tailles.
+- Cartes, bouteilles, potager et labels (mobile) : défilement continu en boucle (`SPEED` = 32 px/s dans `main.js`). Les éléments sont dupliqués en copies inertes (`.is-clone`, masquées hors mobile) pour une boucle sans à-coup.
+- Pause au toucher, au clic, à la molette ou au focus clavier, puis reprise. Arrêt hors écran.
+- Le mouvement tourne même avec « réduire les animations », à la demande du client : c'est un écart volontaire à cette préférence d'accessibilité.
 
 ### Vérifications faites
 - Aucun débordement horizontal à 390, 820, 1024, 1280 et 1440 px.
