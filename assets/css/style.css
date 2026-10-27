@@ -12,39 +12,13 @@
   --bg-grey: #efebeb;
   --white: #fff;
 
-  /* Suisse Int'l : police sous licence, servie si installée (voir @font-face
-     ci-dessous) ; Inter la remplace en attendant les fichiers .woff2. */
-  --font-sans: "Suisse Intl", Inter, "Helvetica Neue", Arial, sans-serif;
+  /* Duo typographique : Inter (style suisse) pour le texte, Literata pour les titres. */
+  --font-sans: Inter, "Helvetica Neue", Arial, sans-serif;
   --font-serif: Literata, Georgia, "Times New Roman", serif;
 
   --container: 1200px;
   --gutter: 24px;
   --header-h: 76px;
-}
-
-/* --- Polices ----------------------------------------------------------- */
-
-/* Suisse Int'l (Swiss Typefaces) : à compléter avec
-   url("../fonts/SuisseIntl-*.woff2") format("woff2") une fois la licence web fournie. */
-@font-face {
-  font-family: "Suisse Intl";
-  font-weight: 400;
-  font-display: swap;
-  src: local("Suisse Int'l Regular"), local("SuisseIntl-Regular");
-}
-
-@font-face {
-  font-family: "Suisse Intl";
-  font-weight: 500;
-  font-display: swap;
-  src: local("Suisse Int'l Medium"), local("SuisseIntl-Medium");
-}
-
-@font-face {
-  font-family: "Suisse Intl";
-  font-weight: 600;
-  font-display: swap;
-  src: local("Suisse Int'l SemiBold"), local("SuisseIntl-SemiBold");
 }
 
 /* --- Reset ------------------------------------------------------------- */

@@ -24,7 +24,7 @@ Depuis les PDF, on a extrait :
 - les couleurs ;
 - les photos en haute définition.
 
-Polices : duo **Suisse Int'l** (texte, sans-serif) + **Literata** (titres, serif), validé par le client. Literata vient de Google Fonts. Suisse Int'l est sous licence (Swiss Typefaces) : déclarée en `@font-face` dans `style.css` (utilisée si installée), **Inter** la remplace en attendant les fichiers.
+Polices : duo **Inter** (style typographique suisse, texte courant) + **Literata** (titres), toutes deux sur Google Fonts. Répartition calée sur les maquettes : titres en serif, texte en sans-serif.
 
 ### Fichiers
 | Fichier | Rôle |
@@ -65,7 +65,6 @@ Polices : duo **Suisse Int'l** (texte, sans-serif) + **Literata** (titres, serif
 
 ## Points ouverts, à voir avec le client
 - [ ] **Photos des blancs et des rouges.** Pour l'instant les onglets Blancs et Rouges réutilisent les 4 bouteilles de rosé. Il faut les vraies photos et les vrais noms de cuvées par couleur.
-- [ ] **Fichiers Suisse Int'l.** Obtenir les `.woff2` sous licence web (400, 500, 600), les poser dans `assets/fonts/` et ajouter leur `url()` aux `@font-face` de `style.css`. Inter peut alors sortir du lien Google Fonts de `build.py`.
 - [ ] **Lien EN** : pour l'instant il ne mène nulle part. Il n'y a pas de version anglaise, et WPML la gérera sur le vrai site.
 - [ ] **Liens en `#`** : ce sont les pages non développées. Soit on les laisse, soit on les retire.
 - [ ] **« Slider par catégorie »** : on l'a interprété comme des onglets par couleur. Le client voulait peut-être un seul slider qui passe d'une couleur à l'autre. À confirmer.
