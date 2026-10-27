@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design system | Commanderie de Peyrassol</title>
+  <meta name="description" content="Couleurs, typographie, espacements et composants du site.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Literata:opsz,wght@7..72,400..600&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/mobile.css">
+  <link rel="stylesheet" href="assets/css/demo.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html">
+        <img src="assets/img/logo-peyrassol.png" width="2067" height="295" alt="Peyrassol, retour à l’accueil">
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        <ul class="main-nav__list">
+          <li class="main-nav__item has-sub">
+            <a class="main-nav__link" href="nos-vins.html">Nos vins</a>
+            <button class="main-nav__toggle" type="button" aria-expanded="false" aria-controls="sub-vins">
+              <span class="visually-hidden">Sous-menu Nos vins</span>
+            </button>
+            <ul class="sub-nav" id="sub-vins">
+              <li><a href="nos-vins.html#vins-domaine">Nos vins de domaine</a></li>
+              <li><a href="nos-vins.html#vins-negoce">Nos vins de négoce</a></li>
+              <li class="sub-nav__strong"><a href="#">La boutique en ligne</a></li>
+            </ul>
+          </li>
+          <li class="main-nav__item has-sub">
+            <a class="main-nav__link" href="#">Le domaine viticole</a>
+            <button class="main-nav__toggle" type="button" aria-expanded="false" aria-controls="sub-domaine">
+              <span class="visually-hidden">Sous-menu Le domaine viticole</span>
+            </button>
+            <ul class="sub-nav" id="sub-domaine">
+              <li><a href="#">Le Vignoble Château Peyrassol</a></li>
+              <li><a href="#">Visite et dégustation</a></li>
+              <li><a href="#">L’équipe</a></li>
+              <li><a href="#">Vos événements</a></li>
+              <li><a href="index.html#agenda">Agenda</a></li>
+              <li><a href="#">Horaires et contact</a></li>
+              <li class="sub-nav__strong"><a href="#">Réservez votre visite</a></li>
+            </ul>
+          </li>
+          <li class="main-nav__item has-sub">
+            <a class="main-nav__link" href="restaurants.html">Restaurants</a>
+            <button class="main-nav__toggle" type="button" aria-expanded="false" aria-controls="sub-restaurants">
+              <span class="visually-hidden">Sous-menu Restaurants</span>
+            </button>
+            <ul class="sub-nav" id="sub-restaurants">
+              <li><a href="restaurants.html">Découvrir les restaurants</a></li>
+              <li><a href="restaurants.html#chez-jeannette">Chez Jeannette</a></li>
+              <li><a href="restaurants.html#bistrot-de-lou">Le Bistrot de Lou</a></li>
+              <li class="sub-nav__strong"><a href="#">Réservez votre table</a></li>
+            </ul>
+          </li>
+          <li class="main-nav__item has-sub">
+            <a class="main-nav__link" href="#">Hébergements</a>
+            <button class="main-nav__toggle" type="button" aria-expanded="false" aria-controls="sub-hebergements">
+              <span class="visually-hidden">Sous-menu Hébergements</span>
+            </button>
+            <ul class="sub-nav" id="sub-hebergements">
+              <li><a href="#">La Rouvière</a></li>
+              <li><a href="#">La Commanderie</a></li>
+              <li class="sub-nav__strong"><a href="#">Réservez votre séjour</a></li>
+            </ul>
+          </li>
+          <li class="main-nav__item has-sub">
+            <a class="main-nav__link" href="#">Le centre d’art</a>
+            <button class="main-nav__toggle" type="button" aria-expanded="false" aria-controls="sub-art">
+              <span class="visually-hidden">Sous-menu Le centre d’art</span>
+            </button>
+            <ul class="sub-nav" id="sub-art">
+              <li><a href="#">Découvrez le centre d’art</a></li>
+              <li><a href="#">La collection Philippe Austruy</a></li>
+              <li><a href="#">La programmation 2026</a></li>
+              <li><a href="#">Les expositions temporaires</a></li>
+              <li class="sub-nav__strong"><a href="#">Réservez votre visite</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="main-nav__actions">
+          <div class="main-nav__item main-nav__item--cta has-sub">
+            <a class="main-nav__link main-nav__link--cta" href="#">Réserver et offrir</a>
+            <button class="main-nav__toggle" type="button" aria-expanded="false" aria-controls="sub-reserver">
+              <span class="visually-hidden">Sous-menu Réserver et offrir</span>
+            </button>
+            <ul class="sub-nav" id="sub-reserver">
+              <li><a href="#">Achetez nos vins</a></li>
+              <li><a href="#">Visitez notre domaine viticole</a></li>
+              <li><a href="#">Réservez votre table</a></li>
+              <li><a href="#">Visitez notre centre d’art</a></li>
+              <li><a href="#">Réservez votre séjour</a></li>
+              <li><a href="#">Boutique cadeaux</a></li>
+              <li><a href="#">Offrez une carte cadeau</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-tools">
+        <div class="header-drop" data-dropdown>
+          <button class="header-tools__agenda" type="button" aria-expanded="false" aria-controls="drop-reserver" aria-label="Réserver et offrir">
+            <svg class="header-tools__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+            <svg class="header-tools__close" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+          <div class="header-drop__panel" id="drop-reserver">
+            <p class="header-drop__title">Réserver et offrir</p>
+            <ul class="header-drop__list">
+              <li><a href="#">Achetez nos vins</a></li>
+              <li><a href="#">Visitez notre domaine viticole</a></li>
+              <li><a href="#">Réservez votre table</a></li>
+              <li><a href="#">Visitez notre centre d’art</a></li>
+              <li><a href="#">Réservez votre séjour</a></li>
+              <li><a href="#">Boutique cadeaux</a></li>
+              <li><a href="#">Offrez une carte cadeau</a></li>
+            </ul>
+            <a class="header-drop__more link-red" href="index.html#agenda">Voir l’agenda</a>
+          </div>
+        </div>
+
+        <div class="header-drop lang-switch" data-dropdown>
+          <button class="lang-switch__current" type="button" aria-expanded="false" aria-controls="drop-lang">
+            <span class="visually-hidden">Langue : </span>FR
+            <svg class="lang-switch__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <ul class="header-drop__panel header-drop__panel--lang" id="drop-lang">
+            <li><a href="#" lang="en" hreflang="en">EN</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <button class="burger" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Ouvrir le menu">
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu" class="ds">
+    <section class="page-intro container">
+      <nav class="breadcrumb" aria-label="Fil d’Ariane">
+        <a href="index.html">Peyrassol</a> / <span aria-current="page">Design system</span>
+      </nav>
+      <h1 class="page-title">Design system</h1>
+      <p class="lead">Les règles visuelles du site, relevées dans les maquettes Figma desktop (1440 px). Chaque valeur est une variable CSS définie dans <code>assets/css/style.css</code>. Les tailles mobiles (≤ 767 px) sont notre adaptation : il n’existe pas de maquette mobile.</p>
+      <p class="ds-note">Les valeurs affichées sont lues en direct dans le CSS : passez en aperçu « Mobile » pour voir l’échelle mobile.</p>
+    </section>
+
+    <section class="ds-section container" aria-labelledby="ds-couleurs">
+      <h2 class="section-title" id="ds-couleurs">Couleurs</h2>
+      <ul class="ds-swatches">
+        <li class="ds-swatch" data-token="--red"><span class="ds-swatch__chip"></span><b>Rouge Peyrassol</b> Footer, liens, sous-titres</li>
+        <li class="ds-swatch" data-token="--black"><span class="ds-swatch__chip"></span><b>Noir</b> Titres, boutons, traits actifs</li>
+        <li class="ds-swatch" data-token="--black-pure"><span class="ds-swatch__chip"></span><b>Noir pur</b> Bouton de la newsletter</li>
+        <li class="ds-swatch" data-token="--text"><span class="ds-swatch__chip"></span><b>Texte</b> Texte courant</li>
+        <li class="ds-swatch" data-token="--grey"><span class="ds-swatch__chip"></span><b>Gris</b> Texte secondaire, onglets inactifs</li>
+        <li class="ds-swatch" data-token="--border"><span class="ds-swatch__chip"></span><b>Filet</b> Bordures de cartes, séparateurs</li>
+        <li class="ds-swatch" data-token="--border-warm"><span class="ds-swatch__chip"></span><b>Filet chaud</b> Bordures sur fond gris</li>
+        <li class="ds-swatch" data-token="--bg-grey"><span class="ds-swatch__chip"></span><b>Fond gris</b> Bande « vins négoce »</li>
+        <li class="ds-swatch" data-token="--white"><span class="ds-swatch__chip"></span><b>Blanc</b> Fond des pages</li>
+      </ul>
+    </section>
+
+    <section class="ds-section container" aria-labelledby="ds-typo">
+      <h2 class="section-title" id="ds-typo">Typographie</h2>
+      <div class="ds-fonts">
+        <div class="ds-font">
+          <p class="ds-font__sample ds-font__sample--serif">Aa</p>
+          <p><b>Literata</b> — titres. Graisse 400 (500 pour les horaires). Google Fonts.</p>
+        </div>
+        <div class="ds-font">
+          <p class="ds-font__sample">Aa</p>
+          <p><b>Inter</b> — texte et interface, style typographique suisse. Graisses 400, 500, 600. Google Fonts.</p>
+        </div>
+      </div>
+
+      <h3 class="ds-subtitle">Échelle de texte</h3>
+      <dl class="ds-scale">
+        <div class="ds-scale__row" data-token="--fs-display"><dt>Titre de page</dt><dd><span class="page-title">Nos vins</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-h2"><dt>Titre de section</dt><dd><span class="section-title">Le domaine viticole</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-h3"><dt>Titre de carte</dt><dd><span class="discover-card__title">Les Restaurants</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-h4"><dt>Petit titre (sans)</dt><dd><span class="newsletter__title">Inscrivez-vous à notre newsletter</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-lead"><dt>Chapô, texte éditorial</dt><dd><span class="lead ds-inline">Des rosés subtils, frais et minéraux.</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-body"><dt>Texte courant</dt><dd>Tout concourt à faire de votre découverte une parenthèse enchantée.</dd></div>
+        <div class="ds-scale__row" data-token="--fs-ui"><dt>Navigation, boutons</dt><dd><span class="kicker">Nos vins</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-small"><dt>Liens, onglets</dt><dd><a class="link-red" href="#">En savoir plus</a></dd></div>
+        <div class="ds-scale__row" data-token="--fs-xs"><dt>Noms de cuvées</dt><dd><span class="wine-card__name">Clos Peyrassol</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-2xs"><dt>Petits boutons</dt><dd><span class="ds-size" style="font-size: var(--fs-2xs)">Voir le programme</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-3xs"><dt>Fil d’Ariane</dt><dd><span class="breadcrumb">Peyrassol / Nos vins</span></dd></div>
+        <div class="ds-scale__row" data-token="--fs-micro"><dt>Numéros</dt><dd><span class="discover-card__num">01</span></dd></div>
+      </dl>
+    </section>
+
+    <section class="ds-section container" aria-labelledby="ds-espaces">
+      <h2 class="section-title" id="ds-espaces">Espacements</h2>
+      <p class="ds-text">Marges, écarts entre cartes et hauteurs de section reprennent cette échelle. Gouttière latérale : <code>--gutter</code> (24 px, 20 px en mobile). Largeur de contenu : <code>--container</code> (1200 px).</p>
+      <ul class="ds-spaces">
+        <li data-token="--space-2xs"><span class="ds-spaces__bar" style="width: var(--space-2xs)"></span></li>
+        <li data-token="--space-xs"><span class="ds-spaces__bar" style="width: var(--space-xs)"></span></li>
+        <li data-token="--space-sm"><span class="ds-spaces__bar" style="width: var(--space-sm)"></span></li>
+        <li data-token="--space-md"><span class="ds-spaces__bar" style="width: var(--space-md)"></span></li>
+        <li data-token="--space-lg"><span class="ds-spaces__bar" style="width: var(--space-lg)"></span></li>
+        <li data-token="--space-xl"><span class="ds-spaces__bar" style="width: var(--space-xl)"></span></li>
+        <li data-token="--space-2xl"><span class="ds-spaces__bar" style="width: var(--space-2xl)"></span></li>
+        <li data-token="--space-3xl"><span class="ds-spaces__bar" style="width: var(--space-3xl)"></span></li>
+      </ul>
+    </section>
+
+    <section class="ds-section container" aria-labelledby="ds-composants">
+      <h2 class="section-title" id="ds-composants">Composants</h2>
+
+      <h3 class="ds-subtitle">Boutons</h3>
+      <p class="ds-text">Angles droits, capitales. Au survol, le fond et le texte s’inversent.</p>
+      <div class="ds-demo">
+        <a class="btn" href="#">Découvrir</a>
+        <a class="btn btn--outline" href="#">Réserver</a>
+        <a class="btn btn--tag" href="#">Chez Jeannette</a>
+        <a class="btn btn--small" href="#">Voir le programme</a>
+      </div>
+      <ul class="ds-legend">
+        <li><code>.btn</code> plein</li>
+        <li><code>.btn--outline</code> contour</li>
+        <li><code>.btn--tag</code> étiquette de navigation</li>
+        <li><code>.btn--small</code> petit</li>
+      </ul>
+
+      <h3 class="ds-subtitle">Liens</h3>
+      <div class="ds-demo">
+        <a class="link-red" href="#">En savoir plus</a>
+        <a class="link-dark" href="#">Voir la carte</a>
+        <div class="lang-switch">
+          <button class="lang-switch__current" type="button" aria-expanded="false">FR
+            <svg class="lang-switch__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+        </div>
+      </div>
+      <ul class="ds-legend">
+        <li><code>.link-red</code> lien d’action</li>
+        <li><code>.link-dark</code> lien sur fond clair</li>
+        <li><code>.lang-switch</code> choix de langue (menu déroulant)</li>
+      </ul>
+
+      <h3 class="ds-subtitle">Carte de découverte</h3>
+      <ul class="ds-cards">
+        <li class="discover-card">
+          <img class="discover-card__img" src="assets/img/vignoble.jpg" width="900" height="1349" alt="" loading="lazy">
+          <span class="discover-card__num">01</span>
+          <h4 class="discover-card__title">Le Vignoble</h4>
+          <a class="link-red" href="#">En savoir plus</a>
+        </li>
+      </ul>
+
+      <h3 class="ds-subtitle">Onglets et carte de vin</h3>
+      <p class="ds-text">Un onglet par couleur. Mobile : les cartes défilent à l’horizontale.</p>
+      <div class="wine-tabs container" data-tabs>
+        <div class="wine-tabs__list" role="tablist" aria-label="Couleurs des vins">
+          <button class="wine-tabs__tab" type="button" role="tab" id="tab-ds-roses" aria-controls="panel-ds-roses" aria-selected="true">Rosés</button>
+          <button class="wine-tabs__tab" type="button" role="tab" id="tab-ds-blancs" aria-controls="panel-ds-blancs" aria-selected="false">Blancs</button>
+          <button class="wine-tabs__tab" type="button" role="tab" id="tab-ds-rouges" aria-controls="panel-ds-rouges" aria-selected="false">Rouges</button>
+        </div>
+        <div class="wine-tabs__panel" role="tabpanel" id="panel-ds-roses" aria-labelledby="tab-ds-roses">
+          <h3 class="visually-hidden">Les rosés</h3>
+          <ul class="wine-grid">
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-1204.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">1204</h4>
+              <p class="wine-card__color">Rosé</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur 1204 rosé</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-clos-peyrassol.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">Clos Peyrassol</h4>
+              <p class="wine-card__color">Rosé</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur Clos Peyrassol rosé</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-chateau-peyrassol.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">Château Peyrassol</h4>
+              <p class="wine-card__color">Rosé</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur Château Peyrassol rosé</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-xiiie.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">XIIIe</h4>
+              <p class="wine-card__color">Rosé</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur XIIIe rosé</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="wine-tabs__panel" role="tabpanel" id="panel-ds-blancs" aria-labelledby="tab-ds-blancs">
+          <h3 class="visually-hidden">Les blancs</h3>
+          <ul class="wine-grid">
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-1204.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">1204</h4>
+              <p class="wine-card__color">Blanc</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur 1204 blanc</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-clos-peyrassol.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">Clos Peyrassol</h4>
+              <p class="wine-card__color">Blanc</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur Clos Peyrassol blanc</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-chateau-peyrassol.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">Château Peyrassol</h4>
+              <p class="wine-card__color">Blanc</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur Château Peyrassol blanc</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-xiiie.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">XIIIe</h4>
+              <p class="wine-card__color">Blanc</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur XIIIe blanc</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="wine-tabs__panel" role="tabpanel" id="panel-ds-rouges" aria-labelledby="tab-ds-rouges">
+          <h3 class="visually-hidden">Les rouges</h3>
+          <ul class="wine-grid">
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-1204.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">1204</h4>
+              <p class="wine-card__color">Rouge</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur 1204 rouge</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-clos-peyrassol.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">Clos Peyrassol</h4>
+              <p class="wine-card__color">Rouge</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur Clos Peyrassol rouge</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-chateau-peyrassol.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">Château Peyrassol</h4>
+              <p class="wine-card__color">Rouge</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur Château Peyrassol rouge</span></a>
+            </li>
+            <li class="wine-card">
+              <img class="wine-card__img" src="assets/img/bouteille-xiiie.jpg" width="420" height="825" alt="" loading="lazy">
+              <h4 class="wine-card__name">XIIIe</h4>
+              <p class="wine-card__color">Rouge</p>
+              <a class="link-red" href="#">En savoir plus<span class="visually-hidden"> sur XIIIe rouge</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="ds-subtitle">Newsletter</h3>
+      <div class="ds-newsletter">
+        <form class="newsletter" action="#" method="post">
+          <label class="newsletter__title" for="ds-email">Inscrivez-vous à notre newsletter</label>
+          <input class="newsletter__input" id="ds-email" type="email" placeholder="adresse e-mail" autocomplete="email">
+          <button class="newsletter__button" type="submit">Je m’abonne</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="ds-section container" aria-labelledby="ds-ruptures">
+      <h2 class="section-title" id="ds-ruptures">Points de rupture</h2>
+      <table class="ds-table">
+        <thead><tr><th scope="col">Largeur</th><th scope="col">Affichage</th></tr></thead>
+        <tbody>
+          <tr><td>≥ 1280 px</td><td>Desktop, sous-menus au survol</td></tr>
+          <tr><td>≤ 1279 px</td><td>Menu burger, agenda et langue à côté du burger</td></tr>
+          <tr><td>≤ 1023 px</td><td>Tablette : image et texte empilés, cartes sur 2 colonnes</td></tr>
+          <tr><td>≤ 767 px</td><td>Mobile : carrousels horizontaux, boutons pleine largeur, échelle de texte mobile</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    // Affiche la valeur réelle de chaque jeton (elle change en mobile)
+    (function () {
+      var root = getComputedStyle(document.documentElement);
+      function show() {
+        root = getComputedStyle(document.documentElement);
+        document.querySelectorAll('[data-token]').forEach(function (el) {
+          var name = el.getAttribute('data-token');
+          var tag = el.querySelector('.ds-token') || el.appendChild(document.createElement('code'));
+          tag.className = 'ds-token';
+          tag.textContent = name + ' : ' + root.getPropertyValue(name).trim();
+          var chip = el.querySelector('.ds-swatch__chip');
+          if (chip) chip.style.background = 'var(' + name + ')';
+        });
+      }
+      show();
+      window.addEventListener('resize', show);
+    })();
+  </script>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__info">
+        <p class="site-footer__title">La Commanderie de Peyrassol</p>
+        <address class="site-footer__address">
+          <p>1204 chemin de la Commanderie de Peyrassol,<br>RN7, 83340 Flassans-sur-Issole</p>
+          <p>Tél : <a href="tel:+33494697102">+33 (0) 4 94 69 71 02</a><br>Email : <a href="mailto:contact@peyrassol.com">contact@peyrassol.com</a></p>
+        </address>
+        <ul class="social">
+          <li><a class="social__link" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg>
+          </a></li>
+          <li><a class="social__link" href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.2a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2zm5-9.3a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM21.9 7.9c-.1-1.6-.4-3-1.6-4.2S17.7 2.2 16.1 2.1C14.5 2 9.5 2 7.9 2.1c-1.6.1-3 .4-4.2 1.6S2.2 6.3 2.1 7.9C2 9.5 2 14.5 2.1 16.1c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.6.1 8.2 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.6 0-8.2zm-2.1 10a3.3 3.3 0 0 1-1.9 1.9c-1.3.5-4.4.4-5.9.4s-4.6.1-5.9-.4a3.3 3.3 0 0 1-1.9-1.9c-.5-1.3-.4-4.4-.4-5.9s-.1-4.6.4-5.9a3.3 3.3 0 0 1 1.9-1.9c1.3-.5 4.4-.4 5.9-.4s4.6-.1 5.9.4a3.3 3.3 0 0 1 1.9 1.9c.5 1.3.4 4.4.4 5.9s.1 4.6-.4 5.9z"/></svg>
+          </a></li>
+          <li><a class="social__link" href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 8.6h4.1V21H3.4zM5.5 2.5a2.4 2.4 0 1 1 0 4.8 2.4 2.4 0 0 1 0-4.8zM10.1 8.6H14v1.7h.1c.6-1 1.9-2.1 3.9-2.1 4.2 0 5 2.7 5 6.3V21h-4.1v-5.8c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V21h-4.1z"/></svg>
+          </a></li>
+        </ul>
+        <a class="site-footer__legal" href="#">Mentions légales et CGV</a>
+      </div>
+
+      <form class="newsletter" action="#" method="post">
+        <label class="newsletter__title" for="newsletter-email">Inscrivez-vous à notre newsletter</label>
+        <input class="newsletter__input" id="newsletter-email" type="email" name="email" placeholder="adresse e-mail" autocomplete="email" required>
+        <button class="newsletter__button" type="submit">Je m’abonne</button>
+      </form>
+    </div>
+
+    <div class="site-footer__brand container">
+      <img src="assets/img/logo-peyrassol.png" width="2067" height="295" alt="" loading="lazy">
+    </div>
+  </footer>
+
+  <script src="assets/js/menu-mobile.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/demo-switch.js" defer></script>
+</body>
+</html>

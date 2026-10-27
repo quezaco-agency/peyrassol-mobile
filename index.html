@@ -107,12 +107,34 @@
       </nav>
 
       <div class="header-tools">
-        <a class="header-tools__agenda" href="index.html#agenda" aria-label="Agenda">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
-        </a>
-        <div class="lang-switch">
-          <a class="lang-switch__link is-current" href="#" aria-current="true">FR</a>
-          <a class="lang-switch__link" href="#" lang="en">EN</a>
+        <div class="header-drop" data-dropdown>
+          <button class="header-tools__agenda" type="button" aria-expanded="false" aria-controls="drop-reserver" aria-label="Réserver et offrir">
+            <svg class="header-tools__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+            <svg class="header-tools__close" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+          <div class="header-drop__panel" id="drop-reserver">
+            <p class="header-drop__title">Réserver et offrir</p>
+            <ul class="header-drop__list">
+              <li><a href="#">Achetez nos vins</a></li>
+              <li><a href="#">Visitez notre domaine viticole</a></li>
+              <li><a href="#">Réservez votre table</a></li>
+              <li><a href="#">Visitez notre centre d’art</a></li>
+              <li><a href="#">Réservez votre séjour</a></li>
+              <li><a href="#">Boutique cadeaux</a></li>
+              <li><a href="#">Offrez une carte cadeau</a></li>
+            </ul>
+            <a class="header-drop__more link-red" href="index.html#agenda">Voir l’agenda</a>
+          </div>
+        </div>
+
+        <div class="header-drop lang-switch" data-dropdown>
+          <button class="lang-switch__current" type="button" aria-expanded="false" aria-controls="drop-lang">
+            <span class="visually-hidden">Langue : </span>FR
+            <svg class="lang-switch__chevron" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <ul class="header-drop__panel header-drop__panel--lang" id="drop-lang">
+            <li><a href="#" lang="en" hreflang="en">EN</a></li>
+          </ul>
         </div>
       </div>
 

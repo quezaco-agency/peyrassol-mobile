@@ -33,7 +33,7 @@ Polices : duo **Inter** (style typographique suisse, texte courant) + **Literata
 | `assets/css/mobile.css` | responsive uniquement (media queries) |
 | `assets/css/demo.css` | barre de démo, à ne pas reprendre dans le thème |
 | `assets/js/menu-mobile.js` | burger, sous-menus en accordéon, Échap, focus piégé |
-| `assets/js/main.js` | points du slider d'accueil, flèches des labels, onglets des vins |
+| `assets/js/main.js` | carrousels (points, flèches, défilement automatique), onglets des vins, menus déroulants du bandeau |
 | `assets/js/demo-switch.js` | barre de démo : boutons des pages et aperçu PC / Mobile |
 
 ### Points de rupture
@@ -58,6 +58,9 @@ Polices : duo **Inter** (style typographique suisse, texte courant) + **Literata
    - les 2 grandes images ont été retirées ;
    - pour chaque gamme (domaine, négoce), on a mis le même bloc qu'à l'accueil : onglets Rosés / Blancs / Rouges, avec un slider de bouteilles par onglet.
 
+### Défilement automatique
+Tous les carrousels défilent seuls dès que leur piste déborde : slider d'accueil (toutes tailles, 5 s), cartes, bouteilles, potager et labels (mobile, 3 à 3,5 s). Pause au toucher, au survol ou au focus, reprise 6 s après ; arrêt hors écran. Liste et cadences : tableau `AUTOPLAY` de `main.js`.
+
 ### Vérifications faites
 - Aucun débordement horizontal à 390, 820, 1024, 1280 et 1440 px.
 - Menu testé : ouverture, accordéon, Échap.
@@ -68,7 +71,8 @@ Polices : duo **Inter** (style typographique suisse, texte courant) + **Literata
 - [ ] **Lien EN** : pour l'instant il ne mène nulle part. Il n'y a pas de version anglaise, et WPML la gérera sur le vrai site.
 - [ ] **Liens en `#`** : ce sont les pages non développées. Soit on les laisse, soit on les retire.
 - [ ] **« Slider par catégorie »** : on l'a interprété comme des onglets par couleur. Le client voulait peut-être un seul slider qui passe d'une couleur à l'autre. À confirmer.
-- [ ] **Picto agenda** : il pointe vers la section Agenda de l'accueil. Faut-il une vraie page Agenda ?
+- [ ] **Picto calendrier** : il ouvre un menu déroulant avec les liens « Réserver et offrir », et « Voir l'agenda » pointe vers la section Agenda de l'accueil. Faut-il une vraie page Agenda ?
+- [ ] **Choix de langue** : « FR ▾ » ouvre un menu avec EN.
 
 ## Directives pour reprendre
 
@@ -99,6 +103,7 @@ Les bouteilles de Nos vins sont décrites dans `build.py`, par les listes `BOTTL
 `_sources/` est ignoré par git. Les outils n'existent donc qu'en local et ne doivent pas être supprimés.
 
 ### Modifier le style
+- Design system : toutes les couleurs, tailles de texte et espacements sont des variables dans le `:root` de `style.css`. Utiliser ces variables, pas de valeur en dur. Le mobile redéfinit l'échelle de texte une seule fois (`:root` du bloc ≤ 767 px de `mobile.css`). Référence visuelle : `design-system.html`, son style est dans `demo.css`.
 - Le desktop va dans `style.css`.
 - Le tablette et le mobile vont dans `mobile.css`, uniquement à l'intérieur des `@media`.
 - Toute modification desktop doit être vérifiée en mobile.

@@ -1,15 +1,25 @@
 /**
- * Peyrassol — carrousels (slider d'accueil, labels) et onglets des vins
+ * Peyrassol — carrousels (slider d'accueil, cartes, bouteilles, potager, labels),
+ * défilement automatique et onglets des vins.
  * Le défilement repose sur le scroll-snap CSS : sans JS, tout reste
- * consultable au glisser ; ce script ajoute les points et les flèches.
+ * consultable au glisser ; ce script ajoute les points, les flèches et l'autoplay.
  */
 (function () {
   'use strict';
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  // Position de défilement qui aligne `item` sur le bord de la piste
+  // (mesurée à l'écran : les pistes mobiles sont en position: relative)
+  function itemLeft(track, item) {
+    var pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+    return item.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft - pad;
+  }
+
   function scrollToItem(track, index) {
     var item = track.children[index];
     if (!item) return;
-    track.scrollTo({ left: item.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    track.scrollTo({ left: Math.max(0, itemLeft(track, item)), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
   }
 
   // Index de l'élément le plus proche du bord gauche visible
@@ -17,7 +27,7 @@
     var best = 0;
     var bestDistance = Infinity;
     Array.prototype.forEach.call(track.children, function (item, i) {
-      var distance = Math.abs(item.offsetLeft - track.offsetLeft - track.scrollLeft);
+      var distance = Math.abs(itemLeft(track, item) - track.scrollLeft);
       if (distance < bestDistance) {
         best = i;
         bestDistance = distance;
@@ -115,5 +125,120 @@
     });
 
     select(tabs[0], false);
+  });
+
+  // Défilement automatique de tous les carrousels, dès que la piste déborde
+  // (slider d'accueil à toutes les tailles, cartes / bouteilles / potager /
+  // labels en mobile). Un geste, le survol ou le focus mettent en pause,
+  // reprise 6 s après. Arrêt hors écran ou dans un onglet masqué.
+  var AUTOPLAY = [
+    ['.hero-slider__track', 5000],
+    ['.discover-grid', 3500],
+    ['.wine-grid', 3500],
+    ['.garden__grid', 3500],
+    ['.labels__track', 3000]
+  ];
+
+  AUTOPLAY.forEach(function (entry) {
+    document.querySelectorAll(entry[0]).forEach(function (track) {
+      var zone = track.closest('[data-carousel]') || track; // flèches des labels comprises
+      var paused = false;
+      var visible = false;
+      var resume;
+
+      function step() {
+        if (paused || !visible || track.offsetParent === null) return;
+        var max = track.scrollWidth - track.clientWidth;
+        if (max <= 4) return;
+        if (track.scrollLeft >= max - 4) {
+          track.scrollTo({ left: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+        } else {
+          scrollToItem(track, currentIndex(track) + 1);
+        }
+      }
+
+      function pause() {
+        paused = true;
+        clearTimeout(resume);
+      }
+
+      function resumeLater() {
+        clearTimeout(resume);
+        resume = setTimeout(function () { paused = false; }, 6000);
+      }
+
+      zone.addEventListener('touchstart', pause, { passive: true });
+      zone.addEventListener('touchend', resumeLater);
+      zone.addEventListener('mouseenter', pause);
+      zone.addEventListener('mouseleave', resumeLater);
+      zone.addEventListener('focusin', pause);
+      zone.addEventListener('focusout', resumeLater);
+
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+      }, { threshold: 0.5 }).observe(track);
+
+      setInterval(step, entry[1]);
+    });
+  });
+
+  // Bandeau : menus déroulants (Réserver et offrir sous le calendrier, langue)
+  // Sous 1280 px, le menu du calendrier est plein écran, comme le menu burger
+  var drops = Array.prototype.slice.call(document.querySelectorAll('[data-dropdown]'));
+  var fullscreenQuery = window.matchMedia('(max-width: 1279px)');
+  var mainNav = document.getElementById('main-nav');
+  var burger = document.querySelector('.burger');
+
+  function isFullscreen(drop) {
+    return fullscreenQuery.matches && !drop.classList.contains('lang-switch');
+  }
+
+  function setDrop(drop, open) {
+    drop.classList.toggle('is-open', open);
+    drop.querySelector('button').setAttribute('aria-expanded', String(open));
+    if (!isFullscreen(drop)) return;
+    var navOpen = mainNav && mainNav.classList.contains('is-open');
+    document.body.classList.toggle('menu-open', open || navOpen);
+  }
+
+  drops.forEach(function (drop) {
+    var button = drop.querySelector('button');
+    button.addEventListener('click', function () {
+      var open = !drop.classList.contains('is-open');
+      // Un seul menu plein écran à la fois : le burger se referme
+      if (open && isFullscreen(drop) && mainNav && mainNav.classList.contains('is-open')) burger.click();
+      drops.forEach(function (other) { setDrop(other, other === drop && open); });
+    });
+    // Le focus qui quitte le menu (Tab) le referme. En plein écran, un focus resté
+    // dans le bandeau (burger) est laissé au clic : refermer dès le mousedown fait
+    // réapparaître la barre de démo et décale le bandeau sous le doigt.
+    drop.addEventListener('focusout', function (event) {
+      var to = event.relatedTarget;
+      if (!to || drop.contains(to)) return;
+      if (isFullscreen(drop) && to.closest('.site-header')) return;
+      setDrop(drop, false);
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    drops.forEach(function (drop) {
+      if (!drop.contains(event.target)) setDrop(drop, false);
+    });
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape') return;
+    drops.forEach(function (drop) {
+      if (!drop.classList.contains('is-open')) return;
+      setDrop(drop, false);
+      drop.querySelector('button').focus();
+    });
+  });
+
+  fullscreenQuery.addEventListener('change', function () {
+    drops.forEach(function (drop) {
+      if (drop.classList.contains('is-open')) setDrop(drop, false);
+    });
+    document.body.classList.remove('menu-open');
   });
 })();

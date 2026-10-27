@@ -11,9 +11,10 @@ Intégration HTML/CSS/JS (sans framework) de trois pages du site de la Commander
 | Accueil | `index.html` |
 | Nos vins | `nos-vins.html` |
 | Restaurants | `restaurants.html` |
+| Design system | `design-system.html` : couleurs, typographie, espacements, composants |
 | Menu mobile | dans le header de chaque page (bouton burger), menu complet du site |
 
-Le bandeau du header porte aussi un picto agenda (lien vers la section Agenda de l'accueil) et le choix de langue FR / EN, à côté du burger sur mobile. Sur la page Nos vins, chaque gamme (domaine, négoce) a le même bloc que l'accueil : un onglet par couleur (Rosés, Blancs, Rouges) et, dans chaque onglet, un slider de bouteilles.
+Le bandeau du header porte aussi deux menus déroulants, à côté du burger sur mobile : le picto calendrier ouvre les liens « Réserver et offrir » (plus un lien vers l'agenda), et « FR ▾ » ouvre le choix de langue. Sur la page Nos vins, chaque gamme (domaine, négoce) a le même bloc que l'accueil : un onglet par couleur (Rosés, Blancs, Rouges) et, dans chaque onglet, un slider de bouteilles.
 
 Les entrées du menu qui mènent à des pages non développées pointent vers `#`.
 
@@ -23,10 +24,10 @@ En haut de chaque page, une barre de démo donne accès aux 4 pages (le bouton �
 
 ```
 assets/
-  css/style.css        base desktop (maquettes 1440 px)
+  css/style.css        base desktop (maquettes 1440 px), jetons du design system dans :root
   css/mobile.css       responsive uniquement : media queries chargées après style.css
   js/menu-mobile.js    menu burger + sous-menus en accordéon (vanilla JS)
-  js/main.js           slider d'accueil, carrousel des labels, onglets des vins
+  js/main.js           carrousels et défilement automatique, onglets des vins, menus du bandeau
   img/                 images extraites des maquettes, optimisées pour le web
 ```
 

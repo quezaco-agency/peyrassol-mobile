@@ -48,7 +48,8 @@
     { label: 'Accueil', href: 'index.html' },
     { label: 'Menu mobile', href: 'index.html?menu=1', menu: true },
     { label: 'Nos vins', href: 'nos-vins.html' },
-    { label: 'Restaurants', href: 'restaurants.html' }
+    { label: 'Restaurants', href: 'restaurants.html' },
+    { label: 'Design system', href: 'design-system.html' }
   ];
   var currentFile = window.location.pathname.split('/').pop() || 'index.html';
 
