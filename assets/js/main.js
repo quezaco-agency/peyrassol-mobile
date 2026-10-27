@@ -129,8 +129,10 @@
 
   // Défilement automatique de tous les carrousels, dès que la piste déborde
   // (slider d'accueil à toutes les tailles, cartes / bouteilles / potager /
-  // labels en mobile). Un geste, le survol ou le focus mettent en pause,
-  // reprise 6 s après. Arrêt hors écran ou dans un onglet masqué.
+  // labels en mobile). Un geste (doigt, clic, molette) ou le focus clavier
+  // mettent en pause, reprise 6 s après. Pas de pause au simple survol : la
+  // souris posée sur l'aperçu mobile de la démo figerait tout.
+  // Arrêt hors écran ou dans un onglet masqué.
   var AUTOPLAY = [
     ['.hero-slider__track', 5000],
     ['.discover-grid', 3500],
@@ -167,11 +169,13 @@
         resume = setTimeout(function () { paused = false; }, 6000);
       }
 
-      zone.addEventListener('touchstart', pause, { passive: true });
-      zone.addEventListener('touchend', resumeLater);
-      zone.addEventListener('mouseenter', pause);
-      zone.addEventListener('mouseleave', resumeLater);
-      zone.addEventListener('focusin', pause);
+      zone.addEventListener('pointerdown', pause);
+      zone.addEventListener('pointerup', resumeLater);
+      zone.addEventListener('pointercancel', resumeLater);
+      zone.addEventListener('wheel', function () { pause(); resumeLater(); }, { passive: true });
+      zone.addEventListener('focusin', function (event) {
+        if (event.target.matches(':focus-visible')) pause();
+      });
       zone.addEventListener('focusout', resumeLater);
 
       new IntersectionObserver(function (entries) {
